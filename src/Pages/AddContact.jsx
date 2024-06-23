@@ -1,18 +1,36 @@
+import { useForm } from "react-hook-form";
+import { ImageUpload } from "../Utils";
+import axios from "axios";
+
 function AddContact() {
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const image = data?.image[0];
+    const photo = await ImageUpload(image);
+    const contactData = {
+      name: data?.name,
+      email: data?.email,
+      phone_num: data?.phone,
+      address: data?.address,
+      photo,
+    };
+    console.log(contactData);
+    const res = await axios.post("http://localhost:3000/contacts", contactData);
+    console.log(res.data);
+  };
   return (
     <div>
-      {/*
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
-*/}
-
       <section className="">
         <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-                      <div className="lg:col-span-2 lg:py-12">
-                          <h2 className="text-3xl font-semibold pb-3">Add Your Contact</h2>
+            <div className="lg:col-span-2 lg:py-12">
+              <h2 className="text-3xl font-semibold pb-3">Add Your Contact</h2>
               <p className="max-w-xl text-lg">
                 At the same time, the fact that we are wholly owned and totally
                 independent from manufacturer and other group control gives you
@@ -32,12 +50,18 @@ function AddContact() {
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-              <form action="#" className="space-y-4">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                action="#"
+                className="space-y-4"
+              >
                 <div>
                   <label className="sr-only" htmlFor="name">
                     Name
                   </label>
                   <input
+                    {...register("name", { required: true })}
+                    name="name"
                     className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                     placeholder="Name"
                     type="text"
@@ -51,6 +75,8 @@ function AddContact() {
                       Email
                     </label>
                     <input
+                      {...register("email", { required: true })}
+                      name="email"
                       className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                       placeholder="Email address"
                       type="email"
@@ -63,6 +89,8 @@ function AddContact() {
                       Phone
                     </label>
                     <input
+                      {...register("phone", { required: true })}
+                      name="phone"
                       className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                       placeholder="Phone Number"
                       type="tel"
@@ -76,6 +104,8 @@ function AddContact() {
                     Address
                   </label>
                   <input
+                    {...register("address", { required: true })}
+                    name="address"
                     className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                     placeholder="Address"
                     type="text"
@@ -83,14 +113,19 @@ function AddContact() {
                   />
                 </div>
 
-                <input type="file" className="file-input file-input-ghost w-full max-w-xs bg-gray-100 rounded-full" />
+                <input
+                  {...register("image", { required: true })}
+                  name="image"
+                  type="file"
+                  className="file-input file-input-ghost w-full max-w-xs bg-gray-100 rounded-full"
+                />
 
                 <div className="mt-4">
                   <button
                     type="submit"
                     className="inline-block w-full rounded-lg bg-[#A91D3A] px-5 py-3 font-medium text-white sm:w-auto"
                   >
-                   Add Contact
+                    Add Contact
                   </button>
                 </div>
               </form>

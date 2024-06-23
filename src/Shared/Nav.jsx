@@ -12,7 +12,7 @@ function Nav() {
         Home
       </NavLink>
       <NavLink
-        to="all-contact"
+        to="all-contacts"
         className={({ isActive }) =>
           isActive ? "text-[#A91D3A] pl-4" : "text-gray-800 pl-4"
         }
