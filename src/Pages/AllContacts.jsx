@@ -9,6 +9,7 @@ import { MdOutlineLocalPhone, MdOutlineMailOutline } from "react-icons/md";
 import UpdateContactModal from "../Components/UpdateModal";
 import Swal from "sweetalert2";
 import "../Utils/custom.css";
+import toast from "react-hot-toast";
 
 function AllContacts() {
   const { data: contacts, refetch } = useQuery({
@@ -21,6 +22,17 @@ function AllContacts() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [item, setItem] = useState(null);
+
+  // Add contact to Favourite list---------->
+  const handleFavourite = async (item) => {
+    const res = await axios.patch(
+      `http://localhost:3000/favouriteContact/${item?._id}`
+    );
+    console.log(res.data);
+    if (res.data) {
+      toast.success(`${item?.name}'s Contact is your Favourite!`);
+    }
+  };
 
   // Delete contact from all contact page---------->
   const handleDelete = async (item) => {
@@ -91,6 +103,7 @@ function AllContacts() {
           </div>
           <div className=" flex flex-col gap-2">
             <a
+              onClick={() => handleFavourite(item)}
               className="inline-block rounded-full border text-xl border-[#A91D3A] p-2 text-[#A91D3A] hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
               href="#"
             >

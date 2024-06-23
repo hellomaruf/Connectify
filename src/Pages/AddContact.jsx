@@ -8,7 +8,6 @@ function AddContact() {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
   } = useForm();
   const navigate = useNavigate();
 
@@ -21,6 +20,7 @@ function AddContact() {
       phone_num: data?.phone,
       address: data?.address,
       photo,
+      status: "normal",
     };
     const res = await axios.post("http://localhost:3000/contacts", contactData);
     console.log(res.data);
