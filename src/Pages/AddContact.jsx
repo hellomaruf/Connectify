@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { ImageUpload } from "../Utils";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigation } from "react-router-dom";
 
 function AddContact() {
   const {
@@ -8,6 +10,7 @@ function AddContact() {
     handleSubmit,
     // formState: { errors },
   } = useForm();
+  const navigate = useNavigation();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -20,9 +23,12 @@ function AddContact() {
       address: data?.address,
       photo,
     };
-    console.log(contactData);
     const res = await axios.post("http://localhost:3000/contacts", contactData);
     console.log(res.data);
+    if (res.data) {
+      toast.success("Contact Added Successfully!");
+      navigate("/all-contacts");
+    }
   };
   return (
     <div>
