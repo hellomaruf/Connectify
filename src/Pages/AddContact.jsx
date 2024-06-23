@@ -5,10 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function AddContact() {
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -37,12 +34,13 @@ function AddContact() {
             <div className="lg:col-span-2 lg:py-12">
               <h2 className="text-3xl font-semibold pb-3">Add Your Contact</h2>
               <p className="max-w-xl text-lg">
-                At the same time, the fact that we are wholly owned and totally
-                independent from manufacturer and other group control gives you
-                confidence that we will only recommend what is right for you.
+                Effortlessly manage and organize all your personal and business
+                contacts in one secure place. Stay connected and keep your
+                network at your fingertips with our intuitive contact management
+                solution
               </p>
 
-              <div className="mt-8">
+              {/* <div className="mt-8">
                 <a href="#" className="text-2xl font-bold text-pink-600">
                   {" "}
                   0151 475 4450{" "}
@@ -51,7 +49,7 @@ function AddContact() {
                 <address className="mt-2 not-italic">
                   282 Kevin Brook, Imogeneborough, CA 58517
                 </address>
-              </div>
+              </div> */}
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">

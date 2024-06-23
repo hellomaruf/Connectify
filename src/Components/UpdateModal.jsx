@@ -160,7 +160,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, item, refetch }) => {
                     onClick={() => {
                       setIsOpen(false);
                     }}
-                    className="inline-block w-full rounded-lg bg-base-300 px-5 py-3 font-medium text-gray-800 ml-4 sm:w-auto"
+                    className="inline-block w-full rounded-lg bg-[#52525D] px-5 py-3 font-medium text-white ml-4 sm:w-auto"
                   >
                     Calcel
                   </button>
