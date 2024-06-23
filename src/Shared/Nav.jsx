@@ -1,3 +1,4 @@
+import { FaRegHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 function Nav() {
@@ -59,7 +60,15 @@ function Nav() {
         <a className=" font-semibold text-2xl">Connectify</a>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{link}</ul>
+        <ul className="menu menu-horizontal px-1">
+          {link}{" "}
+          <div className="relative">
+            <FaRegHeart className="text-xl ml-4 text-[#a91d3a]" />
+            <p className="bg-green-600 w-4 h-4 rounded-full flex items-center justify-center -top-2 -right-2 text-white absolute">
+              0
+            </p>
+          </div>
+        </ul>
       </div>
     </div>
   );

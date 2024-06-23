@@ -22,7 +22,7 @@ function AllContacts() {
   const [isOpen, setIsOpen] = useState(false);
   const [item, setItem] = useState(null);
 
-  // Delete contact from all contact page
+  // Delete contact from all contact page---------->
   const handleDelete = async (item) => {
     Swal.fire({
       title: "Are you ready to delete?",
@@ -43,7 +43,7 @@ function AllContacts() {
         console.log(res.data);
         Swal.fire({
           icon: "success",
-          title: "Your work has been saved",
+          title: "Contact info deleted successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
