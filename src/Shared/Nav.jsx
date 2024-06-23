@@ -60,7 +60,7 @@ function Nav() {
             {link}
           </ul>
         </div>
-        <a className=" font-semibold text-2xl">Connectify</a>
+        <a className=" font-semibold text-3xl"><span className="text-[#A91D3A]">C</span>onnectify</a>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
