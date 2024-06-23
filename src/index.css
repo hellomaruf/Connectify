@@ -6,3 +6,6 @@
 .font-poppins{
   font-family: "Poppins", sans-serif;
 }
+.my-custom-button {
+  color: rgb(30, 30, 30); 
+}

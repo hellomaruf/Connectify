@@ -12,13 +12,10 @@ import { ImageUpload } from "../Utils";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
-  console.log(id);
+const UpdateContactModal = ({ setIsOpen, isOpen, item, refetch }) => {
+  console.log(item);
 
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     const image = data?.image[0];
     const photo = await ImageUpload(image);
@@ -31,14 +28,13 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
     };
     console.log(contactData);
     const res = await axios.patch(
-      `http://localhost:3000/updateContact/${id}`,
+      `http://localhost:3000/updateContact/${item?._id}`,
       contactData
     );
     console.log(res.data);
     if (res.data) {
       toast.success("Update Successfully!");
       refetch();
-     
     }
   };
 
@@ -91,6 +87,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
                     <input
                       {...register("name", { required: true })}
                       name="name"
+                      defaultValue={item?.name}
                       className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                       placeholder="Name"
                       type="text"
@@ -106,6 +103,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
                       <input
                         {...register("email", { required: true })}
                         name="email"
+                        defaultValue={item?.email}
                         className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                         placeholder="Email address"
                         type="email"
@@ -120,6 +118,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
                       <input
                         {...register("phone", { required: true })}
                         name="phone"
+                        defaultValue={item?.phone_num}
                         className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                         placeholder="Phone Number"
                         type="tel"
@@ -135,6 +134,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
                     <input
                       {...register("address", { required: true })}
                       name="address"
+                      defaultValue={item?.address}
                       className="w-full rounded-lg border-2 focus:border-[#A91D3A] outline-none border-gray-200 p-3 text-sm"
                       placeholder="Address"
                       type="text"
@@ -145,6 +145,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
                   <input
                     {...register("image", { required: true })}
                     name="image"
+                    // defaultValue={item?.photo}
                     type="file"
                     className="file-input file-input-ghost w-full  bg-gray-100 rounded-full"
                   />
@@ -175,7 +176,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, id, refetch }) => {
 
 UpdateContactModal.propTypes = {
   setIsOpen: PropTypes.func,
-  id: PropTypes.func,
+  item: PropTypes.func,
   refetch: PropTypes.func,
   isOpen: PropTypes.bool,
 };

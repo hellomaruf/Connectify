@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { ImageUpload } from "../Utils";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AddContact() {
   const {
@@ -10,10 +10,9 @@ function AddContact() {
     handleSubmit,
     // formState: { errors },
   } = useForm();
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const image = data?.image[0];
     const photo = await ImageUpload(image);
     const contactData = {
