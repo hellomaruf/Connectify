@@ -1,7 +1,10 @@
 import { FaRegHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useFavourite from "../Hooks/useFavourite";
 
 function Nav() {
+  const { favouriteContact, refetch } = useFavourite();
+  refetch();
   const link = (
     <>
       <NavLink
@@ -65,7 +68,7 @@ function Nav() {
           <div className="relative">
             <FaRegHeart className="text-xl ml-4 text-[#a91d3a]" />
             <p className="bg-green-600 w-4 h-4 rounded-full flex items-center justify-center -top-2 -right-2 text-white absolute">
-              0
+              {favouriteContact?.length}
             </p>
           </div>
         </ul>

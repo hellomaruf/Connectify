@@ -10,8 +10,12 @@ import UpdateContactModal from "../Components/UpdateModal";
 import Swal from "sweetalert2";
 import "../Utils/custom.css";
 import toast from "react-hot-toast";
+import useFavourite from "../Hooks/useFavourite";
 
 function AllContacts() {
+  const { refetch: favRefetch } = useFavourite();
+  const [isOpen, setIsOpen] = useState(false);
+  const [item, setItem] = useState(null);
   const { data: contacts, refetch } = useQuery({
     queryKey: "contacts",
     queryFn: async () => {
@@ -19,9 +23,6 @@ function AllContacts() {
       return data;
     },
   });
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [item, setItem] = useState(null);
 
   // Add contact to Favourite list---------->
   const handleFavourite = async (item) => {
@@ -31,6 +32,7 @@ function AllContacts() {
     console.log(res.data);
     if (res.data) {
       toast.success(`${item?.name}'s Contact is your Favourite!`);
+      favRefetch();
     }
   };
 
@@ -60,6 +62,7 @@ function AllContacts() {
           timer: 1500,
         });
         refetch();
+        favRefetch();
       }
     });
   };
@@ -104,7 +107,11 @@ function AllContacts() {
           <div className=" flex flex-col gap-2">
             <a
               onClick={() => handleFavourite(item)}
-              className="inline-block rounded-full border text-xl border-[#A91D3A] p-2 text-[#A91D3A] hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
+              className={
+                item?.status === "favourite"
+                  ? "inline-block rounded-full border text-xl bg-[#A91D3A] p-2 text-white hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
+                  : "inline-block rounded-full border text-xl border-[#A91D3A] p-2 text-[#A91D3A] hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
+              }
               href="#"
             >
               <FaRegHeart />
