@@ -1,9 +1,13 @@
+import { Slide } from "react-awesome-reveal";
+
 function Hero() {
   return (
     <div>
       <section className=" text-gray-800">
         <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex  lg:items-center">
           <div className="mx-auto max-w-4xl text-center">
+            <Slide direction="up" cascade damping={0.1}>
+
             <h1 className="bg-gradient-to-r from-[#c72444]  to-[#692936] bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
               Stay Connected and Organized with
               <span className="sm:block"> Contact Management Solution. </span>
@@ -30,6 +34,7 @@ function Hero() {
                 Learn More
               </a>
             </div>
+            </Slide>
           </div>
         </div>
       </section>
