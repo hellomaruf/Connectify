@@ -121,7 +121,7 @@ function AddContact() {
                   <div className="mt-4">
                     <button
                       type="submit"
-                      className="inline-block w-full rounded-lg bg-[#A91D3A] px-5 py-3 font-medium text-white sm:w-auto"
+                      className="inline-block w-full rounded-lg bg-[#A91D3A] hover:bg-[#88273a] px-5 py-3 font-medium text-white sm:w-auto"
                     >
                       Add Contact
                     </button>

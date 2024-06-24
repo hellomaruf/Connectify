@@ -12,12 +12,13 @@ import "../Utils/custom.css";
 import toast from "react-hot-toast";
 import useFavourite from "../Hooks/useFavourite";
 import { Slide } from "react-awesome-reveal";
+import Loader from "../Components/Loader";
 
 function AllContacts() {
   const { refetch: favRefetch } = useFavourite();
   const [isOpen, setIsOpen] = useState(false);
   const [item, setItem] = useState(null);
-  const { data: contacts, refetch } = useQuery({
+  const { data: contacts, refetch, isLoading } = useQuery({
     queryKey: "contacts",
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:3000/contacts");
@@ -70,13 +71,11 @@ function AllContacts() {
 
   return (
     <div className="mx-4">
-      <div className="max-w-7xl mx-auto my-8 grid gap-8 grid-cols-1 md:grid-cols-2  ">
+      {
+        isLoading ? <Loader/> :    <div className="max-w-7xl mx-auto my-8 grid gap-8 grid-cols-1 md:grid-cols-2  ">
         {contacts?.map((item, index) => (
           <Slide key={index} direction="up" cascade damping={0.1}>
-            <div
-             
-              className=" p-6  flex flex-col lg:flex-row lg:items-center justify-between  sm:space-x-6  shadow-md rounded-xl "
-            >
+            <div className=" p-6  flex flex-col lg:flex-row lg:items-center hover:scale-105 transition justify-between  sm:space-x-6  shadow-md rounded-xl ">
               <div className=" flex items-center gap-5">
                 <div className="flex-shrink-0 ">
                   <img
@@ -151,6 +150,8 @@ function AllContacts() {
           />
         )}
       </div>
+      }
+   
     </div>
   );
 }
