@@ -68,18 +68,19 @@ function AllContacts() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto my-8 grid gap-8 grid-cols-2  ">
+    <div className="mx-4">
+        <div className="max-w-7xl mx-auto my-8 grid gap-8 grid-cols-1 md:grid-cols-2  ">
       {contacts?.map((item, index) => (
         <div
           key={index}
-          className=" p-6  flex items-center justify-between  sm:space-x-6  shadow-md rounded-xl "
+          className=" p-6  flex flex-col lg:flex-row lg:items-center justify-between  sm:space-x-6  shadow-md rounded-xl "
         >
           <div className=" flex items-center gap-5">
             <div className="flex-shrink-0 ">
               <img
                 src={item?.photo}
                 alt=""
-                className=" w-40 rounded-xl dark:bg-gray-500"
+                className=" w-28 lg:w-40 rounded-xl dark:bg-gray-500"
               />
             </div>
             <div className="flex flex-col space-y-4">
@@ -104,13 +105,13 @@ function AllContacts() {
               </div>
             </div>
           </div>
-          <div className=" flex flex-col gap-2">
+          <div className=" flex items-end flex-row lg:flex-col  gap-2">
             <a
               onClick={() => handleFavourite(item)}
               className={
                 item?.status === "favourite"
-                  ? "inline-block rounded-full border text-xl bg-[#A91D3A] p-2 text-white hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
-                  : "inline-block rounded-full border text-xl border-[#A91D3A] p-2 text-[#A91D3A] hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
+                  ? "inline-block rounded-full border text-base md:text-xl bg-[#A91D3A] p-2 text-white hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
+                  : "inline-block rounded-full border text-base md:text-xl border-[#A91D3A] p-2 text-[#A91D3A] hover:bg-[#A91D3A] hover:text-white  active:bg-[#A91D3A]"
               }
               href="#"
             >
@@ -121,14 +122,14 @@ function AllContacts() {
                 setIsOpen(true), setItem(item);
               }}
               //   htmlFor="my_modal_6"
-              className="inline-block bg-[#A91D3A] text-white  border border-current p-2 rounded-full text-xl font-medium  transition hover:scale-110 hover:shadow-xl "
+              className="inline-block bg-[#A91D3A] text-white  border border-current p-2 rounded-full text-base md:text-xl font-medium  transition hover:scale-110 hover:shadow-xl "
               href="#"
             >
               <FiEdit />
             </label>
             <a
               onClick={() => handleDelete(item)}
-              className="inline-block bg-[#A91D3A] text-white border border-current p-2 rounded-full  font-medium text-xl transition hover:scale-110 hover:shadow-xl "
+              className="inline-block bg-[#A91D3A] text-white border border-current p-2 rounded-full  font-medium text-base md:text-xl transition hover:scale-110 hover:shadow-xl "
               href="#"
             >
               <AiOutlineDelete />
@@ -145,6 +146,7 @@ function AllContacts() {
         />
       )}
     </div>
+  </div>
   );
 }
 
