@@ -3,10 +3,10 @@ import axios from "axios";
 
 function useFavourite() {
   const { data: favouriteContact, refetch } = useQuery({
-    queryKey: "contact",
+    queryKey: ["contact"],
     queryFn: async () => {
       const res = await axios.get(
-        "http://localhost:3000/favouriteContacts/favourite"
+        "https://connectify-server-rho.vercel.app/favouriteContacts/favourite"
       );
       console.log(res.data);
       return res.data;

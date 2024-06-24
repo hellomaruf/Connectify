@@ -4,8 +4,8 @@ import useFavourite from "../Hooks/useFavourite";
 import { Slide } from "react-awesome-reveal";
 
 function Nav() {
-  const { favouriteContact, refetch } = useFavourite();
-  refetch();
+  const { favouriteContact } = useFavourite();
+ 
   const link = (
     <>
       <NavLink

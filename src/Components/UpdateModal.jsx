@@ -28,7 +28,7 @@ const UpdateContactModal = ({ setIsOpen, isOpen, item, refetch }) => {
     };
     console.log(contactData);
     const res = await axios.patch(
-      `http://localhost:3000/updateContact/${item?._id}`,
+      `https://connectify-server-rho.vercel.app/updateContact/${item?._id}`,
       contactData
     );
     console.log(res.data);

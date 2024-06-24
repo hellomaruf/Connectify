@@ -20,7 +20,10 @@ function AddContact() {
       photo,
       status: "normal",
     };
-    const res = await axios.post("http://localhost:3000/contacts", contactData);
+    const res = await axios.post(
+      "https://connectify-server-rho.vercel.app/contacts",
+      contactData
+    );
     console.log(res.data);
     if (res.data) {
       toast.success("Contact Added Successfully!");
